@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.clear{
+				overflow: hidden;
+				zoom: 1px;
+			}
+			.wrap{
+				width: 600px;
+				height: 300px;
+				border: 2px solid black;
+				margin: 10px auto;
+				
+			}
+			.wrap ul {
+				float: right;
+				font-size: 28px;
+				list-style: none;
+			}
+			.laji{
+				float: left;
+				margin-top: 10px;
+			}
+			.dec {
+				width: 600px;
+				height: 300px;
+				margin: 10px auto;
+				font-size: 28px;
+				list-style: none;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="wrap clear">
+			<div class="laji"><img src="img/trash1.png"/></div>
+			<ul class="book">
+				<li draggable="true">《文章1》</li>
+				<li draggable="true">《文章2》</li>
+				<li draggable="true">《文章3》</li>
+			</ul>
+		</div>
+       <div class="dec">
+       
+       </div>
+		<script type="text/javascript">
+			var books = document.querySelectorAll(".book li");
+			var laji = document.querySelector(".laji");
+			var dec = document.querySelector(".dec")
+            var tmp = null;
+			for(var i = 0; i < books.length; i++) {
+				books[i].ondragstart = function(e) {
+					tmp = this;
+				}
+
+				books[i].ondragend = function(e) {
+					tmp = null
+				}
+			}
+
+			
+			laji.ondragover = function(e) {
+				e.preventDefault();
+			}
+			laji.ondrop = function(e) {
+				dec.appendChild(tmp);
+				this.children[0].setAttribute("src","img/trash2.jpg")
+			}
+
+
+		</script>
+	</body>
+
+</html>
